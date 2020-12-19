@@ -5,16 +5,18 @@
   "version": "1.0.0",
   "browser_action": {
     "default_icon": {
-      "16":"icon16.png",
-      "48":"icon48.png",
-      "128":"icon128.png"
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
     },
     "default_popup": "popup.html"
   },
-
   "background": {
     "scripts": ["js/backgroud.js"],
     "persistent": false
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
   },
   "options_page": "options.html",
   "icons": {
