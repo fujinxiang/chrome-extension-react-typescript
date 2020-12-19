@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import './style.less';
 
 const Index = () => {
   const [keyword, setKeyword] = useState('');
@@ -17,20 +18,19 @@ const Index = () => {
   };
 
   return (
-    <div>
-      <input type='text' value={keyword} onChange={keywordChanged} />
-      <button onClick={zhihuSearch}>知乎专栏</button>
-      <button onClick={githubSearch}>Github</button>
+    <div id='newtab-container'>
+      <div>
+        <input type='text' className='searchInput' value={keyword} placeholder='输入搜索关键字' onChange={keywordChanged} />
+      </div>
 
-      <Alert variant='success'>
-        <Alert.Heading>Hey, nice to see you</Alert.Heading>
-        <p>
-          Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an
-          alert works with this kind of content.
-        </p>
-        <hr />
-        <p className='mb-0'>Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-      </Alert>
+      <div className='search-buttons'>
+        <Button variant='primary' onClick={zhihuSearch}>
+          知乎专栏
+        </Button>
+        <Button variant='primary' onClick={githubSearch}>
+          Github
+        </Button>
+      </div>
     </div>
   );
 };
