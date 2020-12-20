@@ -15,8 +15,13 @@ export default function Popup() {
     });
   }, []);
 
+  const sendMessage = () => {
+    chrome.runtime.sendMessage({ messageId: '123', data: Date.now() });
+  };
+
   return (
     <div className='popupContainer'>
+      <button onClick={sendMessage}>测试发送消息到后台</button>
       <canvas id='qrcodeCanvas' />
     </div>
   );

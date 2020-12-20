@@ -7,6 +7,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log('eventPage notified that Popup.tsx has mounted.');
   }
 
+  if (request.messageId) {
+    console.log(request);
+  }
+
   return isResponseAsync;
 });
 
