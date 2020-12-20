@@ -22,6 +22,10 @@ export default function Popup() {
   return (
     <div className='popupContainer'>
       <button onClick={sendMessage}>测试发送消息到后台</button>
+      <button onClick={sendMessage}>url</button>
+      <button onClick={sendMessage}>markdown</button>
+      <button onClick={sendMessage}>qrcode 图标</button>
+      <button onClick={sendMessage}>设置</button>
       <canvas id='qrcodeCanvas' />
     </div>
   );
