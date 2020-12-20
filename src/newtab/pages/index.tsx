@@ -17,6 +17,10 @@ const Index = () => {
     window.open(`https://github.com/search?q=${encodeURIComponent(`${keyword}`)}`);
   };
 
+  const sendMessage = () => {
+    chrome.runtime.sendMessage({ messageId: 'newtab', data: Date.now() });
+  };
+
   return (
     <div id='newtab-container'>
       <div>
@@ -31,6 +35,8 @@ const Index = () => {
           Github
         </Button>
       </div>
+
+      <button onClick={sendMessage}>测试发送消息到后台</button>
     </div>
   );
 };
