@@ -7,9 +7,13 @@
     "lib": ["es2015", "dom"],
     "module": "commonjs",
     "moduleResolution": "node",
+    "baseUrl": "./src/",
     "outDir": "dist/js",
     "rootDir": "src",
     "sourceMap": true,
-    "target": "es5"
+    "target": "es5",
+    "paths": {
+      "COMMON/*": ["./common/*"],
+    }
   }
 }
