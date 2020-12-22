@@ -44,14 +44,20 @@ export default function Popup() {
     });
   };
 
+  const openOptions = () => {
+    window.open('/options.html');
+  };
+
   return (
     <div className='popupContainer'>
-      <div onClick={copyUrl} className='icon icon-link' />
-      <div onClick={copyMarkdown} className='icon icon-markdown' />
-      <div onClick={showQrcode} className='icon icon-qrcode' />
-      <button onClick={sendMessage}>设置</button>
-      <button onClick={sendMessage}>测试发送消息到后台</button>
-      <canvas id='qrcodeCanvas' />
+      <div className='top-icons'>
+        <div onClick={copyUrl} className='icon icon-link' />
+        <div onClick={copyMarkdown} className='icon icon-markdown' />
+        <div onClick={showQrcode} className='icon icon-qrcode' />
+        <div onClick={openOptions} className='icon icon-setting' />
+      </div>
+      {/* <button onClick={sendMessage}>测试发送消息到后台</button> */}
+      <canvas id='qrcodeCanvas' width={0} height={0} />
     </div>
   );
 }

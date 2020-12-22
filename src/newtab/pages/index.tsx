@@ -17,6 +17,11 @@ const Index = () => {
     window.open(`https://github.com/search?q=${encodeURIComponent(`${keyword}`)}`);
   };
 
+  const iconFontSearch = () => {
+    window.open(`https://www.iconfont.cn/search/index?searchType=icon&q=${encodeURIComponent(`${keyword}`)}`);
+  };
+
+  
   const sendMessage = () => {
     chrome.runtime.sendMessage({ messageId: 'newtab', data: Date.now() });
   };
@@ -34,9 +39,12 @@ const Index = () => {
         <Button variant='primary' onClick={githubSearch}>
           Github
         </Button>
+        <Button variant='primary' onClick={iconFontSearch}>
+          iconfont
+        </Button>
       </div>
 
-      <button onClick={sendMessage}>测试发送消息到后台</button>
+      {/* <button onClick={sendMessage}>测试发送消息到后台</button> */}
     </div>
   );
 };

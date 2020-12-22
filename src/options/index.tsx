@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const Options = ()=>{
-    return <div>Options</div>
+    return <div>设置内容</div>
 }
 
 chrome.tabs.query({ active: true, currentWindow: true }, tab => {
