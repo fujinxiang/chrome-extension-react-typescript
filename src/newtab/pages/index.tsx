@@ -21,7 +21,10 @@ const Index = () => {
     window.open(`https://www.iconfont.cn/search/index?searchType=icon&q=${encodeURIComponent(`${keyword}`)}`);
   };
 
-  
+  const bilibiliSearch = () => {
+    window.open(`https://search.bilibili.com/all?keyword=${encodeURIComponent(`${keyword}`)}`);
+  };
+
   const sendMessage = () => {
     chrome.runtime.sendMessage({ messageId: 'newtab', data: Date.now() });
   };
@@ -33,14 +36,17 @@ const Index = () => {
       </div>
 
       <div className='search-buttons'>
-        <Button variant='primary' onClick={zhihuSearch}>
+        <Button style={{ background: '#0084FF' }} onClick={zhihuSearch}>
           知乎专栏
         </Button>
-        <Button variant='primary' onClick={githubSearch}>
+        <Button style={{ background: '#24292E' }} onClick={githubSearch}>
           Github
         </Button>
-        <Button variant='primary' onClick={iconFontSearch}>
+        <Button style={{ background: '#FF4201' }} onClick={iconFontSearch}>
           iconfont
+        </Button>
+        <Button style={{ background: '#fb7299' }} onClick={bilibiliSearch}>
+          BiliBili
         </Button>
       </div>
 
