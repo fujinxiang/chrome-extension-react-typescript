@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import './style.less';
 
+const content = localStorage.getItem('notice');
+
 const Index = () => {
   const [keyword, setKeyword] = useState('');
+  const [notice, setNotice] = useState(content);
+
+  useEffect(() => {
+    readLocal();
+  }, []);
 
   const keywordChanged = (e) => {
     setKeyword(e.target.value);
@@ -29,6 +36,28 @@ const Index = () => {
     chrome.runtime.sendMessage({ messageId: 'newtab', data: Date.now() });
   };
 
+  const readLocal = () => {
+    const content = localStorage.getItem('notice');
+    setNotice(content);
+  };
+
+  const noticeBlur = (e) => {
+    const value = e.target.value;
+    localStorage.setItem('notice', value);
+  };
+
+  const noticeKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      const value = e.target.value;
+      localStorage.setItem('notice', value);
+    }
+  };
+
+  const onTextChange = (e) => {
+    const value = e.target.value;
+    setNotice(value);
+  };
+
   return (
     <div id='newtab-container'>
       <div>
@@ -51,6 +80,10 @@ const Index = () => {
       </div>
 
       {/* <button onClick={sendMessage}>测试发送消息到后台</button> */}
+
+      <div id='notes-container'>
+        <textarea value={notice} onChange={onTextChange} onBlur={noticeBlur} onKeyPress={noticeKeyPress} />
+      </div>
     </div>
   );
 };

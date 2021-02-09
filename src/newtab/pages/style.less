@@ -1,5 +1,8 @@
 #newtab-container {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 
   .searchInput {
     width: 100%;
@@ -15,6 +18,16 @@
     button {
       margin-right: 6px;
       min-width: 80px;
+      border: none;
+    }
+  }
+
+  #notes-container {
+    margin: 20px 0;
+    flex: 1;
+    textarea {
+      width: 100%;
+      height: 100%;
       border: none;
     }
   }
