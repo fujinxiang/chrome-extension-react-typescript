@@ -18,7 +18,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["js/content.js"],
+      "js": ["lib/react.min.js","js/content.js"],
       "run_at": "document_end"
     }
   ],

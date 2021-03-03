@@ -6,7 +6,7 @@ module.exports = {
     options: path.join(__dirname, 'src/options/index.tsx'),
     newtab: path.join(__dirname, 'src/newtab/index.tsx'),
     backgroud: path.join(__dirname, 'src/backgroud.ts'),
-    content: path.join(__dirname, 'src/content.ts'),
+    content: path.join(__dirname, 'src/content/index.tsx'),
   },
   output: {
     path: path.join(__dirname, 'dist/js'),
@@ -16,8 +16,24 @@ module.exports = {
     rules: [
       {
         exclude: /node_modules/,
+        test: /\.jsx?$/,
+        use: 'babel-loader',
+      },
+      {
+        exclude: /node_modules/,
         test: /\.tsx?$/,
         use: 'ts-loader',
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader', // Creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // Translates CSS into CommonJS
+          },
+        ],
       },
       {
         exclude: /node_modules/,
