@@ -19,3 +19,7 @@
 利用 gitee 代码片段生成保存数据
 
 添加一个记录网页的功能，可以打标签，可以归类，可以搜索、可以记录KB文章
+
+使用 https://www.tailwindcss.cn/
+
+https://gitee.com/api/v5/swagger
