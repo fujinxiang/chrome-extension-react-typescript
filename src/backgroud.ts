@@ -7,9 +7,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log('eventPage notified that Popup.tsx has mounted.');
   }
 
-  if (request.messageId) {
+  if (request.message) {
     console.log(request);
   }
+
+  chrome.tabs.sendMessage(sender.tab.id, {asyncId: request.asyncId, data:'from bg'})
 
   return isResponseAsync;
 });
