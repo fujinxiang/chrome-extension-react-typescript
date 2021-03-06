@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import gitee from '../../service/gitee';
 import './style.less';
 
 const content = localStorage.getItem('notice');
@@ -30,6 +31,12 @@ const Index = () => {
 
   const bilibiliSearch = () => {
     window.open(`https://search.bilibili.com/all?keyword=${encodeURIComponent(`${keyword}`)}`);
+  };
+
+  const test = () => {
+    gitee.getToken().then(result=>{
+      console.log(result);
+    })
   };
 
   const sendMessage = () => {
@@ -76,6 +83,9 @@ const Index = () => {
         </Button>
         <Button style={{ background: '#fb7299' }} onClick={bilibiliSearch}>
           BiliBili
+        </Button>
+        <Button style={{ background: '#1b7299' }} onClick={test}>
+          测试
         </Button>
       </div>
 
