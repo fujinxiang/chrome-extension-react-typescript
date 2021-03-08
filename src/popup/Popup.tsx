@@ -6,10 +6,6 @@ export default function Popup() {
     chrome.runtime.sendMessage({ popupMounted: true });
   }, []);
 
-  const sendMessage = () => {
-    chrome.runtime.sendMessage({ messageId: '123', data: Date.now() });
-  };
-
   const copyToClipboard = (text) => {
     // @ts-ignore
     const item = new ClipboardItem({ 'text/plain': new Blob([text], { type: 'text/plain' }) });

@@ -11,7 +11,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log(request);
   }
 
-  chrome.tabs.sendMessage(sender.tab.id, {asyncId: request.asyncId, data:'from bg'})
+  // 兼容从 popup.html 发来的消息，没有 tab
+  if(sender.tab){
+    chrome.tabs.sendMessage(sender.tab.id, {asyncId: request.asyncId, data:'from bg'})
+  }else{
+    chrome.runtime.sendMessage({asyncId: request.asyncId, data:'from bg'})
+  }
 
   return isResponseAsync;
 });
