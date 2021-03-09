@@ -27,6 +27,7 @@
     "less": "^3.13.0",
     "less-loader": "^7.1.0",
     "livod-ui": "^0.0.7",
+    "lodash": "^4.17.21",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "url-loader": "^4.1.1"

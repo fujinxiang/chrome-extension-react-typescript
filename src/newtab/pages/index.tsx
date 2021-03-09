@@ -34,9 +34,13 @@ const Index = () => {
   };
 
   const test = () => {
-    gitee.createGist('这是一段内容', 'test.txt', 'simpleDesc').then(result=>{
+    // gitee.createGist('这是一段内容', 'test.txt', 'simpleDesc').then(result=>{
+    //   console.log(result);
+    // });
+
+    gitee.getGistList().then((result) => {
       console.log(result);
-    })
+    });
   };
 
   const sendMessage = () => {
