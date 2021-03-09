@@ -58,6 +58,12 @@ const Index = () => {
     });
   };
 
+  const SyncFileLinks = () => {
+    gitee.createRepoFile(JSON.stringify(favLinks), 'favLinks.json', 'add favlinks').then((result) => {
+      console.log(result);
+    });
+  };
+
   const sendMessage = () => {
     chrome.runtime.sendMessage({ messageId: 'newtab', data: Date.now() });
   };
@@ -105,6 +111,9 @@ const Index = () => {
         </Button>
         <Button style={{ background: '#1b7299' }} onClick={test}>
           测试
+        </Button>
+        <Button style={{ background: '#6b7299' }} onClick={SyncFileLinks}>
+          同步链接
         </Button>
       </div>
 
