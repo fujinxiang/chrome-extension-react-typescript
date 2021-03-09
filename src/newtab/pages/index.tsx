@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import gitee from '../../service/gitee';
+import favLink from '../../service/favLink';
 import './style.less';
 
 const content = localStorage.getItem('notice');
 
 const Index = () => {
   const [keyword, setKeyword] = useState('');
+  const [favLinks, setFavLinks] = useState([]);
   const [notice, setNotice] = useState(content);
 
   useEffect(() => {
     readLocal();
+
+    favLink.getAll().then((result) => {
+      setFavLinks(result);
+      console.log('items', result);
+    });
   }, []);
 
   const keywordChanged = (e) => {
@@ -46,10 +53,9 @@ const Index = () => {
     //   console.log(result);
     // });
 
-    gitee.createRepoFile(JSON.stringify({temp:'json'}), 'temp.json', 'add temp').then((result) => {
+    gitee.createRepoFile(JSON.stringify({ temp: 'json' }), 'temp.json', 'add temp').then((result) => {
       console.log(result);
     });
-    
   };
 
   const sendMessage = () => {
@@ -103,6 +109,12 @@ const Index = () => {
       </div>
 
       {/* <button onClick={sendMessage}>测试发送消息到后台</button> */}
+
+      {favLinks.map((x) => (
+        <div key={x.key}>
+          <a href={x.url} target="_blank">{x.title}</a>
+        </div>
+      ))}
 
       <div id='notes-container'>
         <textarea value={notice} onChange={onTextChange} onBlur={noticeBlur} onKeyPress={noticeKeyPress} />

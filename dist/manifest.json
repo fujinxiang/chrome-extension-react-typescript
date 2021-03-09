@@ -12,7 +12,7 @@
     "default_popup": "popup.html"
   },
   "background": {
-    "scripts": ["lib/axios.min.js","js/backgroud.js"],
+    "scripts": ["lib/localforage.min.js","lib/uuidv4.min.js","lib/axios.min.js","js/backgroud.js"],
     "persistent": false
   },
   "content_scripts": [

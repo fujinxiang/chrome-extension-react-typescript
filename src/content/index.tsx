@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { message } from 'livod-ui';
 import { getRandomId } from '../common/helpers/utils';
-
 import './style.less';
+
 console.log('content script');
 
 const asyncIdResolveMap = {};
@@ -42,12 +42,13 @@ const callAPI = (message, params): Promise<any> => {
 
 const MarkButton = () => {
   const mark = () => {
-    callAPI('login', { data: Date.now() }).then(result=>{
+    const url = window.location.href;
+    const title = window.document.title;
+
+    callAPI('addFavLink', { url,title }).then((result) => {
+      message.success(`${url} marked`);
       console.log(result);
     });
-
-    const url = window.location.href;
-    message.success(`${url} marked`);
   };
 
   return <button onClick={mark}>标记页面</button>;
