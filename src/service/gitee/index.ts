@@ -49,6 +49,18 @@ class Gitee {
     return this.AuthCall(Apis.CreateGist, params);
   }
 
+  updateGist(id, content, filename, description = '') {
+    const files = { [filename]: { content } };
+
+    const params = {
+      id,
+      files,
+      description,
+    };
+
+    return this.AuthCall(Apis.UpdateGist, params);
+  }
+
   getGistList() {
     const params = {
       since: '20200309',
@@ -57,6 +69,10 @@ class Gitee {
     };
 
     return this.AuthCall(Apis.GetGist, params);
+  }
+
+  deleteGist(id) {
+    return this.AuthCall(Apis.DeleteGist, { id });
   }
 
   private AuthCall(api, params) {

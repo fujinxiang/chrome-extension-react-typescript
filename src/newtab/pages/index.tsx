@@ -38,9 +38,14 @@ const Index = () => {
     //   console.log(result);
     // });
 
-    gitee.getGistList().then((result) => {
+    // gitee.getGistList().then((result) => {
+    //   console.log(result);
+    // });
+
+    gitee.updateGist('xp3oj2esabn7qhr096dfv30', '这是修改后的内容', 'test.txt', 'simpleDesc').then((result) => {
       console.log(result);
     });
+    
   };
 
   const sendMessage = () => {
