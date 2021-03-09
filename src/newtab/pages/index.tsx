@@ -108,8 +108,6 @@ const Index = () => {
         </Button>
       </div>
 
-      {/* <button onClick={sendMessage}>测试发送消息到后台</button> */}
-
       {favLinks.map((x) => (
         <div key={x.key}>
           <a href={x.url} target="_blank">{x.title}</a>
