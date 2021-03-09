@@ -1,5 +1,6 @@
 // https://gitee.com/api/v5/swagger
 import fetchAPI from 'COMMON/helpers/fetchAPI';
+import { utoa } from 'COMMON/helpers/utils';
 import { message } from 'livod-ui';
 import * as Apis from './apis';
 class Gitee {
@@ -21,12 +22,13 @@ class Gitee {
       password,
       client_id,
       client_secret,
-      scope: 'user_info projects pull_requests issues notes keys hook groups gists enterprises',
+      scope: 'user_info projects pull_requests issues notes keys hook groups gists',
     };
 
     try {
       const tokenResult = await fetchAPI(Apis.CreateToken, params);
       const access_token = tokenResult.data.access_token;
+      // 成功后保存 token
       this.token = access_token;
       localStorage.setItem('gitee-token', access_token);
       return access_token;
@@ -73,6 +75,50 @@ class Gitee {
 
   deleteGist(id) {
     return this.AuthCall(Apis.DeleteGist, { id });
+  }
+
+  getRepoFiles(path) {
+    const data = {
+      owner: 'fmdemo',
+      repo: 'site',
+      path,
+    };
+
+    return this.AuthCall(Apis.GetRepoFiles, data);
+  }
+
+  createRepoFile(content, path, message) {
+    const data = {
+      owner: 'fmdemo',
+      repo: 'site',
+      content: utoa(content),
+      path,
+      message,
+    };
+    return this.AuthCall(Apis.CreateRepoFilie, data);
+  }
+
+  updateRepoFile(content, sha, path, message) {
+    const data = {
+      owner: 'fmdemo',
+      repo: 'site',
+      content: utoa(content),
+      sha,
+      path,
+      message,
+    };
+    return this.AuthCall(Apis.UpdateRepoFile, data);
+  }
+
+  deleteRepoFile(content, sha, path, message) {
+    const data = {
+      owner: 'fmdemo',
+      repo: 'site',
+      path,
+      sha,
+      message,
+    };
+    return this.AuthCall(Apis.DeleteRepoFile, data);
   }
 
   private AuthCall(api, params) {

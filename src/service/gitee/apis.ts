@@ -22,3 +22,23 @@ export const DeleteGist = {
   url: 'https://gitee.com/api/v5/gists/:id',
   method: 'DELETE',
 };
+
+export const GetRepoFiles = {
+  url: 'https://gitee.com/api/v5/repos/:owner/:repo/contents/:path',
+  method: 'GET',
+};
+
+export const CreateRepoFilie = {
+  url: 'https://gitee.com/api/v5/repos/:owner/:repo/contents/:path',
+  method: 'POST',
+};
+
+export const UpdateRepoFile = {
+  url: 'https://gitee.com/api/v5/repos/:owner/:repo/contents/:path',
+  method: 'PUT',
+};
+
+export const DeleteRepoFile = {
+  url: 'https://gitee.com/api/v5/repos/:owner/:repo/contents/:path',
+  method: 'DELETE',
+};

@@ -42,7 +42,11 @@ const Index = () => {
     //   console.log(result);
     // });
 
-    gitee.updateGist('xp3oj2esabn7qhr096dfv30', '这是修改后的内容', 'test.txt', 'simpleDesc').then((result) => {
+    // gitee.updateGist('xp3oj2esabn7qhr096dfv30', '这是修改后的内容', 'test.txt', 'simpleDesc').then((result) => {
+    //   console.log(result);
+    // });
+
+    gitee.createRepoFile(JSON.stringify({temp:'json'}), 'temp.json', 'add temp').then((result) => {
       console.log(result);
     });
     
