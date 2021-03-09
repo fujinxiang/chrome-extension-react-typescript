@@ -34,7 +34,7 @@ const Index = () => {
   };
 
   const test = () => {
-    gitee.getToken().then(result=>{
+    gitee.createGist('这是一段内容', 'test.txt', 'simpleDesc').then(result=>{
       console.log(result);
     })
   };
