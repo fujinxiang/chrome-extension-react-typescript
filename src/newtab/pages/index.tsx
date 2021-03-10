@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { unionBy } from 'lodash';
 import gitee from '../../service/gitee';
 import favLink from '../../service/favLink';
 import './style.less';
+import { atou } from 'COMMON/helpers/utils';
 
 const content = localStorage.getItem('notice');
 
@@ -59,8 +61,17 @@ const Index = () => {
   };
 
   const SyncFileLinks = () => {
-    gitee.createRepoFile(JSON.stringify(favLinks), 'favLinks.json', 'add favlinks').then((result) => {
-      console.log(result);
+    gitee.getRepoFiles('favLinks.json').then((result:any) => {
+      const sha = result.data.sha;
+      const remoteLinks = JSON.parse(atou(result.data.content));
+      const links = unionBy(remoteLinks, favLinks, 'key');
+      
+      // 注意，此处会将已删除的项也保留下来
+      // 同时还需要将远程获取的内容写入本地
+      // 如果只做单向同步会简单很多
+      gitee.updateRepoFile(JSON.stringify(links), sha, 'favLinks.json', 'update favlinks').then((result) => {
+        console.log(result);
+      });
     });
   };
 
@@ -119,7 +130,9 @@ const Index = () => {
 
       {favLinks.map((x) => (
         <div key={x.key}>
-          <a href={x.url} target="_blank">{x.title}</a>
+          <a href={x.url} target='_blank'>
+            {x.title}
+          </a>
         </div>
       ))}
 
