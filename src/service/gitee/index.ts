@@ -95,7 +95,7 @@ class Gitee {
       path,
       message,
     };
-    return this.AuthCall(Apis.CreateRepoFilie, data);
+    return this.AuthCall(Apis.CreateRepoFile, data);
   }
 
   updateRepoFile(content, sha, path, message) {

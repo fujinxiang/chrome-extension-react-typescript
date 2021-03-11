@@ -28,7 +28,7 @@ export const GetRepoFiles = {
   method: 'GET',
 };
 
-export const CreateRepoFilie = {
+export const CreateRepoFile = {
   url: 'https://gitee.com/api/v5/repos/:owner/:repo/contents/:path',
   method: 'POST',
 };

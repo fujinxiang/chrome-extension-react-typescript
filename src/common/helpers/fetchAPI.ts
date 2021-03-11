@@ -23,22 +23,23 @@ const parseUrl = function (url, method, data) {
   return url;
 };
 
-const getOptions = (url, method, data) => {
+const getOptions = (url, method, data,headers) => {
   const options = {
     url,
     method,
     data,
     params: method === 'GET' || method === 'DELETE' ? data : {},
+    headers,
   };
 
   return options;
 };
 
-const fetchAPI = (api, params) => {
+const fetchAPI = (api, params, headers={}) => {
   const data = clone(params);
 
   const url = parseUrl(api.url, api.method, data);
-  const options = getOptions(url, api.method, data);
+  const options = getOptions(url, api.method, data, headers);
 
   return axios(options);
 };

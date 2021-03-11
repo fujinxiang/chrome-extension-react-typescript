@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { unionBy } from 'lodash';
 import gitee from '../../service/gitee';
+import github from '../../service/github';
 import favLink from '../../service/favLink';
 import './style.less';
 import { atou } from 'COMMON/helpers/utils';
@@ -55,7 +56,7 @@ const Index = () => {
     //   console.log(result);
     // });
 
-    gitee.createRepoFile(JSON.stringify({ temp: 'json' }), 'temp.json', 'add temp').then((result) => {
+    github.createRepoFile(JSON.stringify({ temp: 'json' }), 'temp2.json', 'add temp').then((result) => {
       console.log(result);
     });
   };
