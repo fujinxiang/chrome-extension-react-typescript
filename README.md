@@ -11,6 +11,7 @@
 ## 功能
 
 - uuidv4() 获取 uuid
+- CDN 文件仓库 https://github.com/fujinxiang/statics
 
 ## 计划
 

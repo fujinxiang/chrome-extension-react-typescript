@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'livod-ui';
 import './Popup.less';
 
 export default function Popup() {
@@ -35,10 +36,9 @@ export default function Popup() {
   return (
     <div className='popupContainer'>
       <div className='top-icons'>
-        <div onClick={copyUrl} className='icon icon-link' />
-        <div onClick={copyMarkdown} className='icon icon-markdown' />
-        <div onClick={openOptions} className='icon icon-setting' />
-        <button onClick={()=>window.open('/upload.html')}>上传</button>
+        <Button onClick={copyMarkdown}>Markdown</Button>
+        <Button onClick={() => window.open('/upload.html')}>上传</Button>
+        <Button onClick={openOptions}>设置</Button>
       </div>
     </div>
   );
