@@ -1,5 +1,4 @@
 import fetchAPI from 'COMMON/helpers/fetchAPI';
-import { utoa } from 'COMMON/helpers/utils';
 import * as Apis from './apis';
 
 const owner = 'fujinxiang';
@@ -67,7 +66,7 @@ class Github {
     const data = {
       owner,
       repo,
-      content: utoa(content),
+      content,
       path,
       message,
     };
@@ -78,7 +77,7 @@ class Github {
     const data = {
       owner,
       repo,
-      content: utoa(content),
+      content,
       sha,
       path,
       message,

@@ -38,9 +38,8 @@ export default function Popup() {
         <div onClick={copyUrl} className='icon icon-link' />
         <div onClick={copyMarkdown} className='icon icon-markdown' />
         <div onClick={openOptions} className='icon icon-setting' />
+        <button onClick={()=>window.open('/upload.html')}>上传</button>
       </div>
-      {/* <button onClick={sendMessage}>测试发送消息到后台</button> */}
-      <canvas id='qrcodeCanvas' width={0} height={0} />
     </div>
   );
 }

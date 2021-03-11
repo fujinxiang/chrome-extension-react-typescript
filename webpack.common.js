@@ -7,6 +7,7 @@ module.exports = {
     newtab: path.join(__dirname, 'src/newtab/index.tsx'),
     backgroud: path.join(__dirname, 'src/backgroud.ts'),
     content: path.join(__dirname, 'src/content/index.tsx'),
+    upload: path.join(__dirname, 'src/upload/index.ts'),
   },
   output: {
     path: path.join(__dirname, 'dist/js'),
