@@ -62,6 +62,7 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
       'COMMON': path.join(process.cwd(), 'src/common'),
+      'Service': path.join(process.cwd(), 'src/service'),
     },
   },
   externals: {
