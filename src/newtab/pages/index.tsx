@@ -21,6 +21,10 @@ const Index = () => {
       setFavLinks(result);
       console.log('items', result);
     });
+
+    chrome.bookmarks.getTree((result) => {
+      console.log('bookmarks see docs https://developer.chrome.com/docs/extensions/reference/bookmarks/', result);
+    });
   }, []);
 
   const keywordChanged = (e) => {
@@ -62,11 +66,11 @@ const Index = () => {
   };
 
   const SyncFileLinks = () => {
-    gitee.getRepoFiles('favLinks.json').then((result:any) => {
+    gitee.getRepoFiles('favLinks.json').then((result: any) => {
       const sha = result.data.sha;
       const remoteLinks = JSON.parse(atou(result.data.content));
       const links = unionBy(remoteLinks, favLinks, 'key');
-      
+
       // 注意，此处会将已删除的项也保留下来
       // 同时还需要将远程获取的内容写入本地
       // 如果只做单向同步会简单很多
