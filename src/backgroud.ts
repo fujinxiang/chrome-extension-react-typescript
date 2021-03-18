@@ -13,7 +13,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     case 'addFavLink':
       favLink.add(request.url, request.title).then((result) => sendBack(request, sender, result));
       break;
-
+      case 'getAllFavLinks':
+        favLink.getAll().then((result) => sendBack(request, sender, result));
+        break;
     default:
       break;
   }
