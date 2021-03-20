@@ -18,8 +18,8 @@ const Index = () => {
     readLocal();
 
     favLink.getAll().then((result) => {
-      setFavLinks(result);
-      console.log('items', result);
+      const sortedLinks = result.sort((a,b)=>a.createTime-b.createTime);
+      setFavLinks(sortedLinks);
     });
 
     chrome.bookmarks.getTree((result) => {
