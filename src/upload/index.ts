@@ -16,12 +16,15 @@ dragzone('container', (file) => {
     addInfo(result);
   });
 
-  addInfo(`正在上传 ${file.name}`);
-  upload(file).then((result: any) => {
-    const path = result.data.content.path;
-    const cdnUrl = `https://cdn.jsdelivr.net/gh/fujinxiang/statics/${path}`;
-    cdnImage.add(cdnUrl);
-    addInfo(cdnUrl);
+  const path = `${Date.now()}-${file.name}`;
+  addInfo(`正在上传 ${path}`);
+  const cdnUrl = `https://cdn.jsdelivr.net/gh/fujinxiang/statics/${path}`;
+  cdnImage.add(cdnUrl);
+  addInfo(cdnUrl);
+  addInfo(`![](${cdnUrl})`);
+
+  upload(file, path).then((result: any) => {
+    addInfo(`上传 ${path} 成功`);
   });
 });
 
@@ -32,7 +35,7 @@ function addInfo(text) {
   info.append(appendInfo);
 }
 
-function upload(file) {
+function upload(file, path) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -40,7 +43,6 @@ function upload(file) {
 
       //@ts-ignore
       const content = e.target.result.replace(/data.*base64,/g, '');
-      const path = `${Date.now()}-${file.name}`;
       const message = 'add file';
       github.createRepoFile(content, path, message).then(resolve).catch(reject);
     };
