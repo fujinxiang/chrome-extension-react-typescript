@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Tabs } from 'livod-ui';
+const { TabPane } = Tabs;
 import { unionBy } from 'lodash';
 import gitee from '../../service/gitee';
 import github from '../../service/github';
@@ -18,7 +19,7 @@ const Index = () => {
     readLocal();
 
     favLink.getAll().then((result) => {
-      const sortedLinks = result.sort((a,b)=>a.createTime-b.createTime);
+      const sortedLinks = result.sort((a, b) => a.createTime - b.createTime);
       setFavLinks(sortedLinks);
     });
 
@@ -108,42 +109,48 @@ const Index = () => {
 
   return (
     <div id='newtab-container'>
-      <div>
-        <input type='text' className='searchInput' value={keyword} placeholder='输入搜索关键字' onChange={keywordChanged} />
-      </div>
+      <Tabs defaultActiveKey='1'>
+        <TabPane tab='搜索' key='1'>
+          <div>
+            <input type='text' className='searchInput' value={keyword} placeholder='输入搜索关键字' onChange={keywordChanged} />
+          </div>
 
-      <div className='search-buttons'>
-        <Button style={{ background: '#0084FF' }} onClick={zhihuSearch}>
-          知乎专栏
-        </Button>
-        <Button style={{ background: '#24292E' }} onClick={githubSearch}>
-          Github
-        </Button>
-        <Button style={{ background: '#FF4201' }} onClick={iconFontSearch}>
-          iconfont
-        </Button>
-        <Button style={{ background: '#fb7299' }} onClick={bilibiliSearch}>
-          BiliBili
-        </Button>
-        <Button style={{ background: '#1b7299' }} onClick={test}>
-          测试
-        </Button>
-        <Button style={{ background: '#6b7299' }} onClick={SyncFileLinks}>
-          同步链接
-        </Button>
-      </div>
-
-      {favLinks.map((x) => (
-        <div key={x.key}>
-          <a href={x.url} target='_blank'>
-            {x.title}
-          </a>
-        </div>
-      ))}
-
-      <div id='notes-container'>
-        <textarea value={notice} onChange={onTextChange} onBlur={noticeBlur} onKeyPress={noticeKeyPress} />
-      </div>
+          <div className='search-buttons'>
+            <Button style={{ background: '#0084FF', color: '#fff' }} onClick={zhihuSearch}>
+              知乎专栏
+            </Button>
+            <Button style={{ background: '#24292E', color: '#fff' }} onClick={githubSearch}>
+              Github
+            </Button>
+            <Button style={{ background: '#FF4201', color: '#fff' }} onClick={iconFontSearch}>
+              iconfont
+            </Button>
+            <Button style={{ background: '#fb7299', color: '#fff' }} onClick={bilibiliSearch}>
+              BiliBili
+            </Button>
+            <Button style={{ background: '#1b7299', color: '#fff' }} onClick={test}>
+              测试
+            </Button>
+            <Button style={{ background: '#6b7299', color: '#fff' }} onClick={SyncFileLinks}>
+              同步链接
+            </Button>
+          </div>
+        </TabPane>
+        <TabPane tab='收藏' key='2'>
+          {favLinks.map((x) => (
+            <div key={x.key} className='fav-link-item'>
+              <a href={x.url} target='_blank'>
+                {x.title}
+              </a>
+            </div>
+          ))}
+        </TabPane>
+        <TabPane tab='笔记' key='3'>
+          <div id='notes-container'>
+            <textarea value={notice} onChange={onTextChange} onBlur={noticeBlur} onKeyPress={noticeKeyPress} />
+          </div>
+        </TabPane>
+      </Tabs>
     </div>
   );
 };
