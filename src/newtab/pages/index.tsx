@@ -1,27 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Tabs } from 'livod-ui';
 const { TabPane } = Tabs;
-import { unionBy } from 'lodash';
-import gitee from '../../service/gitee';
 import github from '../../service/github';
-import favLink from '../../service/favLink';
+import FavList from './favList';
 import './style.less';
-import { atou } from 'COMMON/helpers/utils';
 
 const content = localStorage.getItem('notice');
 
 const Index = () => {
   const [keyword, setKeyword] = useState('');
-  const [favLinks, setFavLinks] = useState([]);
   const [notice, setNotice] = useState(content);
 
   useEffect(() => {
     readLocal();
-
-    favLink.getAll().then((result) => {
-      const sortedLinks = result.sort((a, b) => a.createTime - b.createTime);
-      setFavLinks(sortedLinks);
-    });
 
     chrome.bookmarks.getTree((result) => {
       console.log('bookmarks see docs https://developer.chrome.com/docs/extensions/reference/bookmarks/', result);
@@ -66,20 +57,7 @@ const Index = () => {
     });
   };
 
-  const SyncFileLinks = () => {
-    gitee.getRepoFiles('favLinks.json').then((result: any) => {
-      const sha = result.data.sha;
-      const remoteLinks = JSON.parse(atou(result.data.content));
-      const links = unionBy(remoteLinks, favLinks, 'key');
 
-      // 注意，此处会将已删除的项也保留下来
-      // 同时还需要将远程获取的内容写入本地
-      // 如果只做单向同步会简单很多
-      gitee.updateRepoFile(JSON.stringify(links), sha, 'favLinks.json', 'update favlinks').then((result) => {
-        console.log(result);
-      });
-    });
-  };
 
   const sendMessage = () => {
     chrome.runtime.sendMessage({ messageId: 'newtab', data: Date.now() });
@@ -131,19 +109,11 @@ const Index = () => {
             <Button style={{ background: '#1b7299', color: '#fff' }} onClick={test}>
               测试
             </Button>
-            <Button style={{ background: '#6b7299', color: '#fff' }} onClick={SyncFileLinks}>
-              同步链接
-            </Button>
+
           </div>
         </TabPane>
         <TabPane tab='收藏' key='2'>
-          {favLinks.map((x) => (
-            <div key={x.key} className='fav-link-item'>
-              <a href={x.url} target='_blank'>
-                {x.title}
-              </a>
-            </div>
-          ))}
+          <FavList />
         </TabPane>
         <TabPane tab='笔记' key='3'>
           <div id='notes-container'>
