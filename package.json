@@ -23,6 +23,7 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "cron": "^1.8.2",
     "less": "^3.13.0",
     "less-loader": "^7.1.0",
     "livod-ui": "^0.0.11",

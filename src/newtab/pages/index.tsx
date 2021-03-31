@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Tabs } from 'livod-ui';
+import { CronJob } from 'cron';
 const { TabPane } = Tabs;
 import github from '../../service/github';
 import FavList from './favList';
 import './style.less';
+
+console.log('cronJob', CronJob);
+// var job = new CronJob('* * * * * *', function() {
+//   console.log('You will see this message every second');
+// }, null, true, 'Asia/Shanghai');
+// job.start();
 
 const content = localStorage.getItem('notice');
 
