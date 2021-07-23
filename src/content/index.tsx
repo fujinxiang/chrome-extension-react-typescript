@@ -71,4 +71,10 @@ const container = document.createElement('div');
 container.classList.add('content-create-container');
 document.body.appendChild(container);
 
-ReactDOM.render(<MarkButton />, container);
+const unMarkList = ['seewo.com', 'gz.cvte.cn', 'cvte.com'];
+
+const unMark = unMarkList.some((x) => window.location.href.includes(x));
+
+if (!unMark) {
+  ReactDOM.render(<MarkButton />, container);
+}

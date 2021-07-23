@@ -1,6 +1,7 @@
 import getFileMd5 from 'COMMON/helpers/md5';
 import github from 'Service/github';
 import LocalCache from 'Service/localCache';
+const uuidv4 = window['uuidv4'];
 
 const info = document.getElementById('info');
 
@@ -16,7 +17,7 @@ dragzone('container', (file) => {
     addInfo(result);
   });
 
-  const path = `${Date.now()}-${file.name}`;
+  const path = `${uuidv4()}-${file.name}`;
   addInfo(`正在上传 ${path}`);
   const cdnUrl = `https://cdn.jsdelivr.net/gh/fujinxiang/statics/${path}`;
   cdnImage.add(cdnUrl);

@@ -24,7 +24,7 @@ export default function Popup() {
   const copyMarkdown = () => {
     chrome.tabs.query({ active: true }, function (tabs) {
       const url = tabs[0].url;
-      const title = tabs[0].title;
+      const title = tabs[0].title.replace(' - 视睿软件设计中心 - CVTE 知识库', '');
       copyToClipboard(`[${title}](${url})`);
     });
   };
