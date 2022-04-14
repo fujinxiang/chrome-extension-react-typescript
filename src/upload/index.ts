@@ -14,7 +14,7 @@ dragzone('container', (file) => {
   formdata.append('file', file);
 
   getFileMd5(file).then((result) => {
-    addInfo(result);
+    addInfo('文件MD5:'+result);
   });
 
   const path = `${uuidv4()}-${file.name}`;

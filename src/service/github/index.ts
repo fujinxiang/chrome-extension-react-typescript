@@ -109,5 +109,5 @@ class Github {
   }
 }
 
-const gitee = new Github();
-export default gitee;
+const github = new Github();
+export default github;
