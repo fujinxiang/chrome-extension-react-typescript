@@ -35,3 +35,13 @@ export const DeleteRepoFile = {
   url: 'https://api.github.com/repos/:owner/:repo/contents/:path',
   method: 'DELETE',
 };
+
+export const GeteIssues = {
+  url: 'https://api.github.com/repos/:owner/:repo/issues',
+  method: 'GET',
+};
+
+export const CreateIssue = {
+  url: 'https://api.github.com/repos/:owner/:repo/issues',
+  method: 'POST',
+};

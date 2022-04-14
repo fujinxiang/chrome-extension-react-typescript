@@ -1,3 +1,5 @@
+// https://gitee.com/api/v5/swagger  Gitee API 接口文档
+
 export const CreateToken = {
   url: 'https://gitee.com/oauth/token',
   method: 'POST',
@@ -41,4 +43,14 @@ export const UpdateRepoFile = {
 export const DeleteRepoFile = {
   url: 'https://gitee.com/api/v5/repos/:owner/:repo/contents/:path',
   method: 'DELETE',
+};
+
+export const GeteIssues = {
+  url: 'https://gitee.com/api/v5/repos/:owner/:repo/issues',
+  method: 'GET',
+};
+
+export const CreateIssue = {
+  url: 'https://gitee.com/api/v5/repos/:owner/issues',
+  method: 'POST',
 };
