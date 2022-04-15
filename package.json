@@ -7,7 +7,7 @@
     "dev": "webpack --config webpack.dev.js",
     "watch": "webpack -w --config webpack.dev.js"
   },
-  "author": "Fu Jinxiang",
+  "author": "FuJinxiang",
   "license": "MIT",
   "devDependencies": {
     "@types/chrome": "^0.0.60",
@@ -23,13 +23,13 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
-    "cron": "^1.8.2",
     "less": "^3.13.0",
     "less-loader": "^7.1.0",
     "livod-ui": "^0.0.47",
     "lodash": "^4.17.21",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "url-loader": "^4.1.1"
+    "url-loader": "^4.1.1",
+    "webpack-bundle-analyzer": "^4.5.0"
   }
 }
